@@ -1,3 +1,10 @@
+"""
+    Description: Node class, where each node has two instance variables: one to hold
+    the node data, and one to hold a pointer to another node. Used to build a linked list.
+    Author: Matthew Erdman
+    Date: 11/18/21
+"""
+
 class Node(object):
 
     def __init__(self, item):

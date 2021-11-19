@@ -1,3 +1,10 @@
+"""
+    Description: Implementation of a linked list relying on the Node class.
+    A linked list is a collection of objects/nodes, where each node contains both
+    the item stored in the list, as well as a “pointer” to the next node in the list.
+    Author: Matthew Erdman
+    Date: 11/18/21
+"""
 from node import *
 
 class LinkedList(object):
