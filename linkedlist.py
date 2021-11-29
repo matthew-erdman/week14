@@ -23,7 +23,7 @@ class LinkedList(object):
             s += ("%s, " % str(curr.getItem()))
             curr = curr.getNext()
         if not self.isEmpty():
-            s = s[:-2]
+            s = s[:-2] # Trim dangling comma/space on last element
         s += "]"
         return s
 
@@ -53,6 +53,7 @@ class LinkedList(object):
             n.setItem(item)
 
     def isEmpty(self):
+        """ return a boolean indicating whether the list is empty """
         return self.size == 0
 
     def append(self, item):
@@ -130,10 +131,11 @@ class LinkedList(object):
 
     def insert(self, index, item):
         """ insert a given string as an element at a given index in the linked list """
+        # OOB index will be ignored
         if index == 0:
             # Inserting as first element, use prepend()
             self.prepend(item)
-        elif index == self.size:
+        elif index >= self.size:
             # Inserting as last element, use append()
             self.append(item)
         elif 0 < index < self.size:
@@ -159,10 +161,10 @@ class LinkedList(object):
             prev = self.head
             for i in range(index-1): # prev will be node immediately before desired index
                 prev = prev.getNext()
-            n = prev.getNext() # n is the node to pop
-            prev.setNext(n.getNext()) # Set prev element to point past n
+            toPop = prev.getNext()
+            prev.setNext(toPop.getNext()) # Set prev element to point past popped node
             self.size -= 1
-            return n.getItem()
+            return toPop.getItem()
         return None # Only reached if index OOB
 
     def remove(self, item):
