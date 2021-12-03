@@ -24,9 +24,11 @@ class Node(object):
         return s
 
     def getItem(self):
+        """ return the item contained in the node """
         return self.item
 
     def getNext(self):
+        """ return the next node """
         return self.next
 
     def setItem(self, i):

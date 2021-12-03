@@ -23,7 +23,7 @@ class LinkedList(object):
             string += ("%s, " % str(n.getItem())) # Traverse list to build up string
             n = n.getNext()
         if not self.isEmpty():
-            string = string[:-2] # Trim dangling comma/space on last element
+            string = string[:-2] # Trim dangling comma and space on last element
         string += "]"
         return string
 
@@ -33,14 +33,14 @@ class LinkedList(object):
 
     def __contains__(self, item):
         """ return True if a given item is in the linked list """
-        return self.index(item) != -1
+        return self.index(item) != -1 # True if index() is able to find item
 
     def __getitem__(self, index):
         """ return the item at the given index """
         item = None
         if 0 <= index < self.size: # Ensure index is within list bounds
             n = self.head
-            for i in range(index): # Traverse list
+            for i in range(index): # Traverse list to desired index
                 n = n.getNext()
             item = n.getItem()
         return item # Returns None if index OOB
@@ -108,7 +108,8 @@ class LinkedList(object):
                 n = self.head
                 for i in range(self.size-2): # Get second to last element
                     n = n.getNext()
-                self.tail = n # Update tail element
+                self.tail = n # Replace tail element with second to last element
+                self.tail.setNext(None)
             self.size -= 1
         return oldTail # Returns None if list is empty
 
@@ -135,7 +136,7 @@ class LinkedList(object):
 
     def insert(self, index, item):
         """ insert given string as an element at given index in linked list """
-        # Negative OOB index will be ignored
+        # Negative index will be ignored
         if index == 0:
             # Inserting as first element, use prepend()
             self.prepend(item)
@@ -154,7 +155,7 @@ class LinkedList(object):
         return
 
     def pop(self, index):
-        """ return the item at a given index, removing the element """
+        """ remove the element at a given index, returning the item contained """
         item = None
         if index == 0:
             # Pop first element, use deleteHead()
@@ -174,8 +175,8 @@ class LinkedList(object):
         return item # Returns None if index OOB
 
     def remove(self, item):
-        """ remove first occurrence of given item in linked list, returning the item """
-        self.pop(self.index(item)) # If item not found, index will return -1 to pop
+        """ remove first occurrence of given item in linked list """
+        self.pop(self.index(item)) # pop() receives and ignores -1 if item not found
         return
 
 
@@ -197,17 +198,17 @@ if __name__ == "__main__":
 
     head1 = LL.deleteHead()
     print("Deleted head 1: " + head1)
-    print(LL)
+    print("List: " + str(LL))
     assert head1 == "A"
 
     head2 = LL.deleteHead()
     print("Deleted head 2: " + head2)
-    print(LL)
+    print("List: " + str(LL))
     assert head2 == "B"
 
     head3 = LL.deleteHead()
     print("Deleted head 3: " + str(head3))
-    print(LL)
+    print("List: " + str(LL))
     assert head3 == None
 
     assert str(LL) == "[]"
@@ -230,17 +231,17 @@ if __name__ == "__main__":
 
     tail1 = LL.deleteTail()
     print("Deleted tail 1: " + tail1)
-    print(LL)
+    print("List: " + str(LL))
     assert tail1 == "B"
 
     tail2 = LL.deleteTail()
     print("Deleted tail 2: " + tail2)
-    print(LL)
+    print("List: " + str(LL))
     assert tail2 == "A"
 
     tail3 = LL.deleteTail()
     print("Deleted tail 3: " + str(tail3))
-    print(LL)
+    print("List: " + str(LL))
     assert tail3 == None
 
     assert str(LL) == "[]"
