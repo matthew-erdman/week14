@@ -147,7 +147,7 @@ class LinkedList(object):
         elif index >= self.size:
             # Inserting as last element, use append()
             self.append(item)
-        elif 0 < index < self.size - 1:
+        elif 0 < index <= self.size - 1:
             # Inserting in the middle, traverse list
             prev = self.head
             for i in range(index-1): # prev will be element immediately before index
@@ -160,6 +160,7 @@ class LinkedList(object):
 
     def pop(self, index):
         """ remove the element at a given index, returning the item contained """
+        # Negative index will return None
         item = None
         if index == 0:
             # Pop first element, use deleteHead()
