@@ -38,6 +38,12 @@ class LinkedList(object):
 
     def __getitem__(self, index):
         """ return the item at the given index """
+        # item = self.pop(index)
+        # if item: # Ensure index wasn't OOB before reinserting item (don't insert None)
+        #     self.insert(index, item)
+        # return item # Returns None if index OOB
+        
+        # Negative index will return None
         item = None
         if 0 <= index < self.size: # Ensure index is within list bounds
             n = self.head
@@ -48,6 +54,7 @@ class LinkedList(object):
 
     def __setitem__(self, index, item):
         """ sets the item at the given index """
+        # Negative index will be ignored
         if 0 <= index < self.size: # Ensure index is within list bounds
             n = self.head
             for i in range(index): # Traverse list to given element
