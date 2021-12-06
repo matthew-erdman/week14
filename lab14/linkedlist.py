@@ -8,6 +8,7 @@
 from node import *
 
 class LinkedList(object):
+    """ class for a linked list composed of mulitple Node objects linked to each other """
 
     def __init__(self):
         """ construct an empty linked list """
@@ -21,7 +22,7 @@ class LinkedList(object):
         n = self.head
         for i in range(self.size):
             string += ("%s, " % str(n.getItem())) # Traverse list to build up string
-            n = n.getNext()
+            n = n.getNext()                       # Move to next item in list
         if not self.isEmpty():
             string = string[:-2] # Trim dangling comma and space on last element
         string += "]"
@@ -124,7 +125,10 @@ class LinkedList(object):
         return count
 
     def index(self, item):
-        """ return index of first occurrence of a given item in the linked list """
+        """
+        return index of first occurrence of a given item in the linked list,
+        or -1 if item not found
+        """
         n = self.head
         index = -1
         for i in range(self.size): # Traverse through list
@@ -143,7 +147,7 @@ class LinkedList(object):
         elif index >= self.size:
             # Inserting as last element, use append()
             self.append(item)
-        elif 0 < index < self.size:
+        elif 0 < index < self.size - 1:
             # Inserting in the middle, traverse list
             prev = self.head
             for i in range(index-1): # prev will be element immediately before index
@@ -163,7 +167,7 @@ class LinkedList(object):
         elif index == self.size-1:
             # Pop last element, use deleteTail()
             item = self.deleteTail()
-        elif 0 < index < self.size:
+        elif 0 < index < self.size - 1:
             # Pop in the middle, traverse list
             prev = self.head
             for i in range(index-1): # prev will be element immediately before index

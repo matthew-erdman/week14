@@ -6,11 +6,9 @@
 """
 
 class Node(object):
-
+    """ class for a single Node object, contains string data and pointer to next node """
     def __init__(self, item):
-        """
-        Construct new node, with given item. Next Node initially set to None.
-        """
+        """ construct new node with given item, next node initially set to None """
         self.item = item
         self.next = None
 
